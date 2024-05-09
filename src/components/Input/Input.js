@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function Input() {
+function Input({ guessesArray, setGuessesArray }) {
   const [guess, setGuess] = useState("");
 
   function handleInput(e) {
     e.preventDefault();
-    console.log({ guess });
+    setGuessesArray([...guessesArray, {value: guess, id: crypto.randomUUID()}])
     setGuess("");
   }
 
@@ -16,7 +16,7 @@ function Input() {
         required
         type="text"
         id="guess-input"
-        title='5 charachters required'
+        title="5 charachters required"
         minLength={5}
         maxLength={5}
         pattern="[a-zA-Z]{5}"
