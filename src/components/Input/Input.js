@@ -1,16 +1,15 @@
 import React, { useState } from "react";
+import { checkGuess } from "../../game-helpers";
 
-function Input({ guessesArray, setGuessesArray }) {
+function Input({ handleInput }) {
   const [guess, setGuess] = useState("");
 
-  function handleInput(e) {
-    e.preventDefault();
-    setGuessesArray([...guessesArray, {value: guess, id: crypto.randomUUID()}])
-    setGuess("");
-  }
-
   return (
-    <form className="guess-input-wrapper" onSubmit={handleInput}>
+    <form className="guess-input-wrapper" onSubmit={(e) => {
+      e.preventDefault();
+      handleInput(guess);
+      setGuess("");
+    }}>
       <label htmlFor="guess-input">Enter Guess: </label>
       <input
         required

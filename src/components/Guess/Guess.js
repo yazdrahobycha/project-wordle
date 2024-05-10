@@ -6,8 +6,11 @@ function Guess({ guessToInsert }) {
     <p className="guess">
       {range(5).map((arrItem, i) => {
         return (
-          <span key={i} className="cell">
-            {guessToInsert ? guessToInsert.value[i] : ""}
+          <span
+            key={i}
+            className={`cell ${guessToInsert ? guessToInsert[i].status : ''}`}
+          >
+            {guessToInsert ? guessToInsert[i].letter : ""}
           </span>
         );
       })}
